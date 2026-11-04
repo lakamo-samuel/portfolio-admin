@@ -13,7 +13,7 @@ function Area({ label, value, onChange, rows = 4 }: { label: string; value: stri
 
 export default function ContentEditor({ content, onChange, onSave, saving }: { content: SiteContent; onChange: (value: SiteContent) => void; onSave: () => void; saving: boolean }) {
   const [section, setSection] = useState("Hero");
-  const set = (group: keyof SiteContent, key: string, value: unknown) => onChange({ ...content, [group]: { ...content[group], [key]: value } } as SiteContent);
+  const set = (group: Exclude<keyof SiteContent, "themeDefault">, key: string, value: unknown) => onChange({ ...content, [group]: { ...content[group], [key]: value } } as SiteContent);
   const sections = ["Hero", "About", "Skills", "Contact", "Links & theme"];
   const card = "rounded-xl border border-[#262626] bg-[#111] p-5 sm:p-6";
 
